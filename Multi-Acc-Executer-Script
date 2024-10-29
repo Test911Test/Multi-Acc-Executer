@@ -1,9 +1,10 @@
 -- Give each account name a script number
 -- You can add accounts and assign them a number, like this:
--- accountNumbers["AccountName"] = scriptNumber
 
 local accountNumbers = {
-    
+    TestAcc1 = 1,
+    TestAcc2 = 2,
+    TestAcc3 = 3 
 
 -- Define scripts here; each script can be assigned a unique number
 local scripts = {
