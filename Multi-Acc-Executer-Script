@@ -1,0 +1,33 @@
+-- Give each account name a script number
+-- You can add accounts and assign them a number, like this:
+-- accountNumbers["AccountName"] = scriptNumber
+
+local accountNumbers = {
+    
+
+-- Define scripts here; each script can be assigned a unique number
+local scripts = {
+    [1] = function()
+        print("Hi1") -- Script 1
+    end,
+    [2] = function()
+        print("Hi2") -- Script 2
+    end,
+    [3] = function()
+        print("Hi3") -- Script 3
+    end,
+    -- Add more scripts as needed, with unique numbers
+}
+
+local function executeScriptForAccount(accountName)
+    local scriptNumber = accountNumbers[accountName]
+    if scriptNumber and scripts[scriptNumber] then
+        scripts[scriptNumber]()
+    else
+        print("No script available for this account.")
+    end
+end
+
+local accountName = game.Players.LocalPlayer.Name
+
+executeScriptForAccount(accountName)
