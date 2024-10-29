@@ -30,5 +30,5 @@ local function executeScriptForAccount(accountName)
 end
 
 local accountName = game.Players.LocalPlayer.Name
-
+-- made by Sonne_911 
 executeScriptForAccount(accountName)
