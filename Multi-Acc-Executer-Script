@@ -11,19 +11,11 @@ TestAcc3
 TestAcc4
 ]]
 
--- Bereich für die Skripte (nur hier kommen die Skripte rein)
 -- BEGINN SCRIPTS ------------------------------
 local scripts = {}
 
 scripts[1] = [[
-script_key = "kGCULxrypNBDRDDAhNjAhGmOqPFmgVxL"
-getgenv().Config = {
-    ["AutoMailUser"] = "W0d111",
-    ["EquipEnchants"] = {"Lucky Eggs", "Lucky Eggs", "Lucky Eggs", "Strong Pets", "Coins", "Fortune"},
-    ["UserID"] = "",
-    ["Webhook"] = "https://discord.com/api/webhooks/1312555335264768123/A9N_MYDh-Ml8RC0Msb4f9jRf-onoF_VeRzSOZ_9bwqfhtjSimmpPyc5M6JaCc1LqYKwh"
-}
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/a4eae1e62a671891847a41dff20b52ce.lua"))()
+print("Dies ist das Skript für TestAcc1 und TestAcc2")
 ]]
 
 scripts[2] = [[
