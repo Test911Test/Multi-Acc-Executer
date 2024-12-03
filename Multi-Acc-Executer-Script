@@ -1,34 +1,65 @@
--- Give each account name a script number
--- You can add accounts and assign them a number, like this:
+-- Konfiguration: Accounts nach Skript-IDs
+local accs = {}
 
-local accountNumbers = {
-    TestAcc1 = 1,
-    TestAcc2 = 2,
-    TestAcc3 = 3 
+accs[1] = [[
+TestAcc1
+TestAcc2
+]]
 
--- Define scripts here; each script can be assigned a unique number
-local scripts = {
-    [1] = function()
-        print("Hi1") -- Script 1
-    end,
-    [2] = function()
-        print("Hi2") -- Script 2
-    end,
-    [3] = function()
-        print("Hi3") -- Script 3
-    end,
-    -- Add more scripts as needed, with unique numbers
+accs[2] = [[
+TestAcc3
+TestAcc4
+]]
+
+-- Bereich für die Skripte (nur hier kommen die Skripte rein)
+-- BEGINN SCRIPTS ------------------------------
+local scripts = {}
+
+scripts[1] = [[
+script_key = "kGCULxrypNBDRDDAhNjAhGmOqPFmgVxL"
+getgenv().Config = {
+    ["AutoMailUser"] = "W0d111",
+    ["EquipEnchants"] = {"Lucky Eggs", "Lucky Eggs", "Lucky Eggs", "Strong Pets", "Coins", "Fortune"},
+    ["UserID"] = "",
+    ["Webhook"] = "https://discord.com/api/webhooks/1312555335264768123/A9N_MYDh-Ml8RC0Msb4f9jRf-onoF_VeRzSOZ_9bwqfhtjSimmpPyc5M6JaCc1LqYKwh"
 }
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/a4eae1e62a671891847a41dff20b52ce.lua"))()
+]]
 
+scripts[2] = [[
+print("Dies ist das Skript für TestAcc3 und TestAcc4")
+]]
+-- ENDE SCRIPTS --------------------------------
+
+-- Funktion, um die Skript-ID für einen Account zu finden
+local function getScriptIDForAccount(accountName)
+    for scriptID, accList in pairs(accs) do
+        for account in accList:gmatch("[^\r\n]+") do -- Trenne Zeilen
+            if account:lower() == accountName:lower() then -- Vergleiche case-insensitive
+                return scriptID
+            end
+        end
+    end
+    return nil
+end
+
+-- Funktion zum Ausführen des passenden Skripts
 local function executeScriptForAccount(accountName)
-    local scriptNumber = accountNumbers[accountName]
-    if scriptNumber and scripts[scriptNumber] then
-        scripts[scriptNumber]()
+    local scriptID = getScriptIDForAccount(accountName) -- Hole die Skript-ID
+    if scriptID and scripts[scriptID] then
+        local func, err = loadstring(scripts[scriptID]) -- Lade das Skript dynamisch
+        if func then
+            func() -- Führe das Skript aus
+        else
+            print("Fehler beim Laden des Skripts: " .. tostring(err))
+        end
     else
-        print("No script available for this account.")
+        print("Kein Skript für diesen Account vorhanden.")
     end
 end
 
+-- Beispiel: Hole den aktuellen Account-Namen (in Roblox wäre das der Spielername)
 local accountName = game.Players.LocalPlayer.Name
--- made by Sonne_911 
+
+-- Führe das passende Skript für den Account aus
 executeScriptForAccount(accountName)
